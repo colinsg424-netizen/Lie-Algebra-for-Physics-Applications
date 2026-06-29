@@ -2,75 +2,63 @@
 
 A Python framework for the construction and numerical analysis of finite-dimensional Lie algebras using matrix representations.
 
-The project implements computational tools for exploring Lie algebra structure, including commutators, structure constants, Jacobi identity verification, Killing forms, Casimir operators, and exponential maps.
+The project implements computational tools for exploring Lie algebra structure, including commutators, structure constants, Jacobi identity verification, Killing forms, Casimir operators, and Lie group exponential maps.
 
-The framework is applied to $\mathfrak{su}(2)$ to demonstrate quantum spin-½ time evolution and precession dynamics.
+A key application demonstrates quantum spin-½ dynamics using the $\mathfrak{su}(2)$ Lie algebra, including time evolution under a magnetic field Hamiltonian.
 
 ---
 
 # Mathematical Framework
 
-This framework represents Lie algebras as matrix subalgebras of $\mathfrak{gl}(n, \mathbb{C})$. A Lie algebra $\mathfrak{g}$ is a vector space equipped with the Lie bracket:
+This framework represents Lie algebras as matrix subalgebras of $\mathfrak{gl}(n, \mathbb{C})$.
+
+The Lie bracket is defined by:
 
 $$
 [X, Y] = XY - YX
 $$
 
-where $X, Y \in \mathfrak{g}$ are matrices in a chosen representation.
+where $X, Y$ are matrices in a chosen representation.
 
-### Jacobi Identity
-By definition, the Lie bracket must satisfy the Jacobi identity for all elements $X, Y, Z \in \mathfrak{g}$:
-
-$$
-[X, [Y, Z]] + [Y, [Z, X]] + [Z, [X, Y]] = 0
-$$
-
-In this framework, the identity is verified numerically across all generator combinations to ensure algebraic consistency.
 ---
 
 ## Matrix Basis Construction
 
-The implementation constructs Lie algebra bases using elementary matrix units:
+The elementary matrix units are defined as:
 
 $$
 (E_{ij})_{kl} = \delta_{ik}\delta_{jl}
 $$
 
-From these, generators are formed for standard Lie algebras such as $\mathfrak{su}(n)$ and $\mathfrak{u}(n)$.
+These are used to construct Lie algebra generators.
 
 ---
 
 ## Construction of $\mathfrak{su}(n)$
 
-The special unitary algebra is constructed using:
+Generators are constructed as:
 
-Symmetric generators:
+Generators are constructed as:
+
+**Symmetric part:**
 
 $$
 S_{ij} = \frac{1}{2}(E_{ij} + E_{ji})
 $$
 
-Antisymmetric generators:
+**Antisymmetric part:**
 
 $$
 A_{ij} = -\frac{i}{2}(E_{ij} - E_{ji})
 $$
 
-- Diagonal traceless generators completing the basis
-
-These satisfy closure under the Lie bracket:
-
-$$
-[T_a, T_b] = \sum_c f_{abc} T_c
-$$
-
-where $f_{abc}$ are the structure constants.
+Diagonal traceless generators complete the basis.
 
 ---
 
 ## Construction of $\mathfrak{u}(n)$
 
-The unitary algebra is obtained as:
+The unitary algebra is:
 
 $$
 \mathfrak{u}(n) = \mathfrak{su}(n) \oplus \mathfrak{u}(1)
@@ -84,31 +72,39 @@ $$
 
 ---
 
-## Lie Algebra Structure
+## Jacobi Identity
 
-The Lie bracket defines the algebraic structure:
+The Lie bracket satisfies:
 
 $$
-[X, Y] = XY - YX
+[X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]] = 0
 $$
 
-In a basis $\{T_a\}$, this induces structure constants:
+This implementation verifies the Jacobi identity numerically across all generator triples.
+
+---
+
+## Structure Constants
+
+In a basis $\{T_a\}$:
 
 $$
 [T_a, T_b] = \sum_c f_{abc} T_c
 $$
 
+The structure constants are computed using projection onto the generator basis.
+
 ---
 
 ## Adjoint Representation
 
-The adjoint representation is defined by:
+Defined by:
 
 $$
 \mathrm{ad}_X(Y) = [X, Y]
 $$
 
-and in components:
+with components:
 
 $$
 (\mathrm{ad}_{T_a})_{bc} = f_{abc}
@@ -118,51 +114,41 @@ $$
 
 ## Killing Form
 
-The Killing form is computed as:
+Computed as:
 
 $$
 K(X, Y) = \mathrm{Tr}(\mathrm{ad}_X \, \mathrm{ad}_Y)
 $$
 
-and defines an invariant bilinear structure on the algebra.
-
 ---
 
 ## Casimir Operator
 
-The quadratic Casimir operator is:
+The quadratic Casimir is:
 
 $$
 C_2 = \sum_{a,b} (K^{-1})_{ab} T_a T_b
 $$
 
-and commutes with all generators:
-
-$$
-[C_2, T_a] = 0
-$$
+and commutes with all generators.
 
 ---
 
-## Lie Group Elements
+## Lie Group Exponential Map
 
-Lie group elements are obtained via the exponential map:
-
-$$
-U = e^{X}, \quad X \in \mathfrak{g}
-$$
-
-In physics applications:
+Lie group elements are obtained via:
 
 $$
-U(t) = e^{-iHt}
+U = e^{iX}
 $$
+
+and implemented numerically using matrix exponentiation.
 
 ---
 
-## Physical Application: Quantum Spin Dynamics
+## Physical Application: Quantum Spin-½ Dynamics
 
-As an application, the framework is used to model spin-½ dynamics using $\mathfrak{su}(2)$.
+The framework is applied to $\mathfrak{su}(2)$.
 
 Spin operators satisfy:
 
@@ -170,19 +156,19 @@ $$
 [S_i, S_j] = i \epsilon_{ijk} S_k
 $$
 
-A spin in a magnetic field evolves under:
+The Hamiltonian for a spin in a magnetic field is:
 
 $$
 H = \mathbf{B} \cdot \mathbf{S}
 $$
 
-with time evolution:
+Time evolution is computed as:
 
 $$
 \psi(t) = e^{-iHt} \psi(0)
 $$
 
-This produces quantum spin precession (Larmor precession) on the Bloch sphere.
+This models quantum spin precession under Larmor dynamics.
 
 ---
 
@@ -198,7 +184,6 @@ gens = SU(2)
 alg = LieAlgebra(gens, name="su(2)")
 
 print("Number of generators:", alg.n)
-print("First generator:\n", alg.generators[0])
 ```
 
 ## 2. Checking Lie Algebra Closure
@@ -214,15 +199,11 @@ print("Closed under commutator:", alg.check_closure())
 ```
 
 ## 3. Computing Structure Constants
+
 ```python
 from groups import SU
 from lie_algebra import LieAlgebra
 
 gens = SU(2)
 alg = LieAlgebra(gens, name="su(2)")
-
-f = alg.compute_structure_constants()
-
-print("Structure constants shape:", f.shape)
-print("Example f[0,1,k]:", f[0,1])
 ```
