@@ -18,6 +18,14 @@ $$
 
 where $X, Y \in \mathfrak{g}$ are matrices in a chosen representation.
 
+### Jacobi Identity
+By definition, the Lie bracket must satisfy the Jacobi identity for all elements $X, Y, Z \in \mathfrak{g}$:
+
+$$
+[X, [Y, Z]] + [Y, [Z, X]] + [Z, [X, Y]] = 0
+$$
+
+In this framework, the identity is verified numerically across all generator combinations to ensure algebraic consistency.
 ---
 
 ## Matrix Basis Construction
