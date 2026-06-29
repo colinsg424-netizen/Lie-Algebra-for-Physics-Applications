@@ -5,7 +5,7 @@ from groups import SU
 # get SU(2) generators
 gens = SU(2)
 
-# spin operators (assuming your SU(2) ordering gives Pauli-like basis)
+# spin operators
 Sx = gens[0]
 Sy = gens[1]
 Sz = gens[2]
