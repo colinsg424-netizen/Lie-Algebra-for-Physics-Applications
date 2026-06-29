@@ -1,10 +1,10 @@
 # Lie Algebra for Physics Applications
 
-A Python framework for the construction and analysis of finite-dimensional Lie algebras using matrix representations.
+A Python framework for the construction and numerical analysis of finite-dimensional Lie algebras using matrix representations.
 
-The project is designed for applications in theoretical physics, particularly quantum mechanics and gauge theory, and provides computational tools for exploring Lie algebra structure, including commutators, structure constants, Killing forms, Casimir operators, and exponential maps.
+The project implements computational tools for exploring Lie algebra structure, including commutators, structure constants, Jacobi identity verification, Killing forms, Casimir operators, and exponential maps.
 
-A key application is included demonstrating quantum spin-½ dynamics via the $\mathfrak{su}(2)$ Lie algebra.
+The framework is applied to $\mathfrak{su}(2)$ to demonstrate quantum spin-½ time evolution and precession dynamics.
 
 ---
 
