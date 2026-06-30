@@ -1,4 +1,4 @@
-# Lie Algebra for Physics Applications
+# Symmetry and Lie Group Methods in Physics
 
 A Python framework for simulating physical systems governed by Lie group symmetries using matrix representations.
 
