@@ -176,15 +176,47 @@ $$
 H = \mathbf{B} \cdot \mathbf{S}
 $$
 
-Time evolution is computed as:
+Time evolution via the unitary operator:
 
 $$
 \psi(t) = e^{-iHt} \psi(0)
 $$
 
-This models quantum spin precession under Larmor dynamics, where SU(2) symmetry generators govern the evoltuion of the quantum state.
+This models quantum spin precession under Larmor dynamics, where SU(2) symmetry generators govern the evolution of the quantum state.
 
----
+## Bloch Sphere Representation
+
+The quantum state can be mapped to a real three-dimensional vector via expectation values of the SU(2) generators:
+
+$$
+\mathbf{r}(t) = \langle \psi(t) | \mathbf{S} | \psi(t) \rangle
+$$
+
+with components:
+
+$$
+r_i(t) = \langle \psi(t) | S_i | \psi(t) \rangle
+$$
+
+This identifies the spin-½ state with a point on the Bloch sphere in $$\mathbb{R}^3$$ where pure states satisfy:
+
+$$
+|\mathbf{r}| = \text{const}
+$$
+
+Under the Hamiltonian:
+
+$$
+H = \mathbf{B} \cdot \mathbf{S}
+$$
+
+the Bloch vector evolves according to:
+
+$$
+\frac{d\mathbf{r}}{dt} = \mathbf{B} \times \mathbf{r}
+$$
+
+This corresponds to uniform precession of the spin about the magnetic field axis at the Larmor frequency, and realizes the adjoint action of $$\mathfrak{su}(2)$$.
 
 # Examples
 
